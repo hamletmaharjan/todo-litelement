@@ -53,27 +53,7 @@ class TodoItem extends LitElement{
         // this.dispatchEvent(new CustomEvent('toggle', {detail:{id:this.todo.id}}));
     }
 
-    
 
-    
-
-    //ovserve for change
-    // static get observedAttributes() {
-    //     return ['attribute-name'];
-    // }
-
-    //fires when attributes are changed
-    // attributeChangedCallback() {
-
-    // }
-
-    // connectedCallback() {
-    //     console.log('element added to the dom');
-    // }
-
-    // disconnectedCallback() {
-    //     console.log('element removed from the dom');
-    // }
 }
 
 window.customElements.define('todo-item', TodoItem);
