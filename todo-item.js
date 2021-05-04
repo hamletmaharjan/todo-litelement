@@ -4,7 +4,7 @@ import {html, LitElement} from '@polymer/lit-element';
 class TodoItem extends LitElement{
     constructor() {
         super();
-        console.log(this.todo);
+        
         this.num = 0
     }
 
@@ -15,6 +15,12 @@ class TodoItem extends LitElement{
             },
             num: {
                 type:Number
+            },
+            onDelete: {
+                type: Function
+            },
+            onToggle: {
+                type: Function
             }
         }
     }
@@ -39,18 +45,19 @@ class TodoItem extends LitElement{
             </style>
         
             <li class="todo-item">
-                <input type="checkbox" ?checked="${this.todo.completed}"  @click=${(e)=>this.toggleTodo(e)}/>
-                <label class="${this.todo.completed ? 'completed': ''}">${this.todo.title}</label>
-                <button id="delete-btn" @click=${(e)=>{ this.dispatchEvent(new CustomEvent('delete', {detail:{id:this.todo.id}}));}}>&times;</button>
+                <input type="checkbox" ?checked="${this.todo.completed}"  @click=${(e)=>this.onToggle(this.todo.id)}/>
+                <label class="${this.todo.completed ? 'completed': 'j'}">${this.todo.title}</label>
+                <button id="delete-btn" @click=${(e)=>this.onDelete(this.todo.id)}>&times;</button>
             </li>
         `;
     }
 
     toggleTodo(e){
-        this.todo.completed = !this.todo.completed;
-        this.num++;
-        console.log(this.todo)
-        // this.dispatchEvent(new CustomEvent('toggle', {detail:{id:this.todo.id}}));
+        // this.todo.completed = !this.todo.completed;
+        // this.num++;
+        // console.log(this.todo)
+        this.dispatchEvent(new CustomEvent('toggle', {detail:{id:this.todo.id}}));
+        this.requestUpdate();
     }
 
 
