@@ -5,15 +5,40 @@ import {html, LitElement} from '@polymer/lit-element';
 import './app-todo-top.js';
 import './app-list.js';
 
+/**
+ * `<app-todo>` Custom component to add a todo
+ *
+ * <body>
+ *  <app-todo></app-todo>
+ *
+ * @polymer
+ * @litElement
+ * @customElement
+ */
 class Todo extends LitElement{
+    
+    /**
+     * Static getter properties
+     * 
+     * @returns Object
+     */
     static get properties() {
         return {
-            todos: { type: Object},
+            /**
+             * holds all the todos
+             */
+            todos: { type: Array },
+
+            /**
+             * holds the new todo input value
+             */
             inputvalue: { type: String}
         }
     }
 
-    
+    /**
+     * constructor
+     */
     constructor() {
         super();
         this.todos = [
@@ -31,7 +56,11 @@ class Todo extends LitElement{
     }
 
    
-
+    /**
+     * render method
+     * 
+     * @returns {customElements}
+     */
     render() {
         console.log('render');
         console.log(this.todos);
@@ -74,12 +103,13 @@ class Todo extends LitElement{
 
     handleToggle(id) {
         // console.log(id);
-        this.todos.forEach((item, i) => {
-            if(item["id"] == id){
-                item.completed = !item.completed;
+        
+        this.todos = this.todos.map((item)=> {
+            if(item['id']==id){
+                item.completed = !item.completed
             }
+            return item;
         });
-        this.todos = [...this.todos];
     }
 
     handleInput(e) {

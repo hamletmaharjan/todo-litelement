@@ -1,35 +1,61 @@
 
 import {html, LitElement} from '@polymer/lit-element';
 
+/**
+ * `<todo-item>` Custom component for individual todo
+ *
+ * <app-list>
+ *  <todo-item></todo-item>
+ *
+ * @polymer
+ * @litElement
+ * @customElement
+ */
 class TodoItem extends LitElement{
     
-
+    /**
+     * Static getter properties
+     * 
+     * @returns Object
+     */
     static get properties() {
         return {
+            /**
+             * holds single todo item
+             */
             todo: {
                 type:Object
             },
-            num: {
-                type:Number
-            },
+
+            /**
+             * holds handler function on delete todo item
+             */
             onDelete: {
                 type: Function
             },
+
+            /**
+             * holds handler function on toggle todo item
+             */
             onToggle: {
                 type: Function
             },
+
+            /**
+             * holds boolean value if the todo is completed
+             */
             checked: {
                 type: Boolean
             }
         }
     }
 
-    // constructor() {
-    //     super();
-    //     this.checked = this.todo.completed
-    // }
 
-
+     /**
+     * render method
+     * 
+     * @returns {customElements}
+     */
     render() {
         console.log('called');
         return html`
