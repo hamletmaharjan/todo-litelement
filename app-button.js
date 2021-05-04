@@ -18,6 +18,7 @@ class AppButton extends LitElement{
     }
 
     render() {
+        console.log('button called');
         return html`
             <button type="button" name="${this.name}" id="add-btn" @click=${this.onClick}>Add</button>
         `;

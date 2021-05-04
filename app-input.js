@@ -21,6 +21,7 @@ class AppInput extends LitElement{
     }
 
     render() {
+        console.log('input called');
         return html`
             <input id="todo-input" .value="${this.value}" type="text" @input=${this.onInput}/>
         `;

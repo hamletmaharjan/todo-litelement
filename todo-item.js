@@ -2,11 +2,7 @@
 import {html, LitElement} from '@polymer/lit-element';
 
 class TodoItem extends LitElement{
-    constructor() {
-        super();
-        
-        this.num = 0
-    }
+    
 
     static get properties() {
         return {
@@ -21,13 +17,21 @@ class TodoItem extends LitElement{
             },
             onToggle: {
                 type: Function
+            },
+            checked: {
+                type: Boolean
             }
         }
     }
 
+    // constructor() {
+    //     super();
+    //     this.checked = this.todo.completed
+    // }
+
 
     render() {
-        
+        console.log('called');
         return html`
             <style>
             .completed {
@@ -45,20 +49,13 @@ class TodoItem extends LitElement{
             </style>
         
             <li class="todo-item">
-                <input type="checkbox" ?checked="${this.todo.completed}"  @click=${(e)=>this.onToggle(this.todo.id)}/>
+                <input type="checkbox" ?checked=${this.todo.completed}  @click=${(e)=>this.onToggle(this.todo.id)}/>
                 <label class="${this.todo.completed ? 'completed': 'j'}">${this.todo.title}</label>
                 <button id="delete-btn" @click=${(e)=>this.onDelete(this.todo.id)}>&times;</button>
             </li>
         `;
     }
 
-    toggleTodo(e){
-        // this.todo.completed = !this.todo.completed;
-        // this.num++;
-        // console.log(this.todo)
-        this.dispatchEvent(new CustomEvent('toggle', {detail:{id:this.todo.id}}));
-        this.requestUpdate();
-    }
 
 
 }

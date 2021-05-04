@@ -6,6 +6,14 @@ import './app-todo-top.js';
 import './app-list.js';
 
 class Todo extends LitElement{
+    static get properties() {
+        return {
+            todos: { type: Object},
+            inputvalue: { type: String}
+        }
+    }
+
+    
     constructor() {
         super();
         this.todos = [
@@ -22,12 +30,6 @@ class Todo extends LitElement{
         // this.input = this.shadowRoot.querySelector('input');
     }
 
-    static get properties() {
-        return {
-            todos: { type: Object},
-            inputvalue: { type: String}
-        }
-    }
    
 
     render() {
