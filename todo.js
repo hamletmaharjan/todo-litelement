@@ -2,9 +2,9 @@
 import {html, LitElement} from '@polymer/lit-element';
 
 
-import './app-todo-top.js';
+// import '../components/app-todo-top.js';
 import './app-list.js';
-
+import './app-todo-top';
 /**
  * `<app-todo>` Custom component to add a todo
  *
@@ -52,7 +52,6 @@ class Todo extends LitElement{
         this.handleInput = this.handleInput.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.inputvalue = '';
-        // this.input = this.shadowRoot.querySelector('input');
     }
 
    
@@ -62,8 +61,7 @@ class Todo extends LitElement{
      * @returns {customElements}
      */
     render() {
-        console.log('render');
-        console.log(this.todos);
+        // console.log(this.todos);
         return html`
             <style>
             * {
@@ -94,7 +92,7 @@ class Todo extends LitElement{
             </div>
         `;
     }
-
+    
     handleDelete(id) {
         this.todos = this.todos.filter(function(todo) {
             return todo.id != id;
@@ -102,23 +100,19 @@ class Todo extends LitElement{
     }
 
     handleToggle(id) {
-        // console.log(id);
-        
         this.todos = this.todos.map((item)=> {
             if(item['id']==id){
                 item.completed = !item.completed
             }
-            return item;
+            return {...item};
         });
     }
 
     handleInput(e) {
-        // console.log(e);
         this.inputvalue = e.target.value;
     }
 
     handleAdd() {
-        // console.log('add');
         this.counter++;
         this.todos = [...this.todos, {id:this.counter, title:this.inputvalue, completed:false}];
         this.inputvalue = '';

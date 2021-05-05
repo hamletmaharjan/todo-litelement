@@ -1,5 +1,7 @@
 
 import {html, LitElement} from '@polymer/lit-element';
+import { classMap } from 'lit-html/directives/class-map';
+import { styleMap } from 'lit-html/directives/style-map';
 
 /**
  * `<todo-item>` Custom component for individual todo
@@ -39,16 +41,10 @@ class TodoItem extends LitElement{
              */
             onToggle: {
                 type: Function
-            },
-
-            /**
-             * holds boolean value if the todo is completed
-             */
-            checked: {
-                type: Boolean
             }
         }
     }
+
 
 
      /**
@@ -57,7 +53,7 @@ class TodoItem extends LitElement{
      * @returns {customElements}
      */
     render() {
-        console.log('called');
+
         return html`
             <style>
             .completed {
@@ -75,8 +71,8 @@ class TodoItem extends LitElement{
             </style>
         
             <li class="todo-item">
-                <input type="checkbox" ?checked=${this.todo.completed}  @click=${(e)=>this.onToggle(this.todo.id)}/>
-                <label class="${this.todo.completed ? 'completed': 'j'}">${this.todo.title}</label>
+                <input type="checkbox" ?checked="${this.todo.completed}"  @click=${(e)=>this.onToggle(this.todo.id)}/>
+                <label class=${classMap({completed:this.todo.completed})}>${this.todo.title}</label>
                 <button id="delete-btn" @click=${(e)=>this.onDelete(this.todo.id)}>&times;</button>
             </li>
         `;

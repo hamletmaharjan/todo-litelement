@@ -51,8 +51,7 @@ class AppList extends LitElement{
      * @returns {customElements}
      */
     render() {
-        console.log('list called');
-        return html`
+        return this.todos.length>0? html`
             <style>
             ul {
                 list-style-type: none;
@@ -63,13 +62,13 @@ class AppList extends LitElement{
                 ${
                     this.todos.map(item => {
                         return html`
-                            <todo-item .todo="${item}" .onToggle=${this.onToggle} .checked=${item.completed}
+                            <todo-item .todo="${item}" .onToggle=${this.onToggle} 
                             .onDelete=${this.onDelete}></todo-item>
                         `
                     })
                 }
             </ul>
-        `;
+        `: html``;
     }
 
 }
